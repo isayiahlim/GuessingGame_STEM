@@ -16,7 +16,8 @@ public class GuessingGame
 		//makes variables that are used for the statistics
 		int totalGames = 0;
 		int totalGuesses = 0;
-		int bestGame = 0;
+		//default number to ensure the code runs
+		int bestGame = 100;
 		int guessCount = 0;
 		//variable that will run the game until made false
 		boolean gamePlay = true;
@@ -92,9 +93,9 @@ public class GuessingGame
 		System.out.println("Overall Results:");
 		System.out.println("	Total Games     = "+ totalGames);
 		System.out.println("	Total Guesses   = " + totalGuesses);
-		System.out.println("    Average Guesses = " + (double)(totalGuesses)/totalGames);
+		System.out.println("	Average Guesses = " + (double)(totalGuesses)/totalGames);
 		System.out.println();
-		System.out.println("    Best Game       = " + bestGame);
+		System.out.println("	Best Game       = " + bestGame);
 	}
 	
 	//checks if the user wants to play again
