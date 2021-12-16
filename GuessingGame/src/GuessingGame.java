@@ -88,12 +88,13 @@ public class GuessingGame
 	}
 	
 	//adds up the statistics
-	public static void stats(int guessCount, int totalGames, int totalGuesses, int bestGame)
+	public static void stats(int guessCount, double totalGames, double totalGuesses, int bestGame)
 	{
+		double average = totalGuesses/totalGames;
 		System.out.println("Overall Results:");
-		System.out.println("	Total Games     = "+ totalGames);
-		System.out.println("	Total Guesses   = " + totalGuesses);
-		System.out.println("	Average Guesses = " + (double)(totalGuesses)/totalGames);
+		System.out.println("	Total Games     = "+ (int)totalGames);
+		System.out.println("	Total Guesses   = " + (int)totalGuesses);
+		System.out.printf("	Average Guesses = %.2f", average);
 		System.out.println();
 		System.out.println("	Best Game       = " + bestGame);
 	}
