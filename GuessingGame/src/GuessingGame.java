@@ -4,45 +4,42 @@
  * APCS Period 2
  * Guessing Game Project
  * 
- * This program makes a guessing game where the use tries to guess a random number between 1-100.
+ * This program makes a guessing game where the use tries to guess a random number between 1-MaxNum.
  * The user can play it again after they win. After they stop playing, the program displays stats
  * telling them info about their games. 
  */
 import java.util.Scanner;
 public class GuessingGame 
 {
+	//change this to change the range of the game.
 	public static int MaxNum = 100;
 	public static void main(String[] args) 
 	{
-		//makes variables that are used for the statistics
-		int totalGames = 0;
-		int totalGuesses = 0;
-		//default number to ensure the code runs
-		int bestGame = 10000000;
-		int guessCount = 0;
-		//variable that will run the game until made false
-		boolean gamePlay = true;
+		//new scanner
 		Scanner input = new Scanner(System.in);
 		
 		//prints out the intro message
 		System.out.println("Let's play a game!");
 		System.out.println();
 		
-		//starts the game and runs it until the player wants to stop
-		while(gamePlay)
+		//starts the game 
+		int guessCount = playGame(input);
+		//declares & initializes variables to the values of the first game
+		int totalGames = 1;
+		int totalGuesses = guessCount;
+		int bestGame = guessCount;
+		//runs the game until the player wants to stop
+		while(playAgain(input))
 		{
+			//plays the game and sets the number of guesses to guessCount
 			guessCount = playGame(input);
 			//adds to the total statistics
 			totalGuesses += guessCount;
 			totalGames ++;
-			
 			//checks if the most recent game was the best
 			bestGame = Math.min(bestGame, guessCount);
-				
-			//asks if the user wants to play again. If not, then it prints out the statistics
-			gamePlay = playAgain(input);
 		}
-		//gets and prints out the stats of the game
+		//calculates and prints out the stats of the game
 		stats(guessCount, totalGames, totalGuesses, bestGame);	
 	}
 	
@@ -59,7 +56,7 @@ public class GuessingGame
 		System.out.println("I am thinking of a number between 1 and " + MaxNum + ". Can you guess what it is?");
 		System.out.println();
 		
-		//loop until the correct guess is made
+		//loops until the correct guess is made
 		while(!isCorrect)
 		{
 			System.out.print("Your guess? ");
@@ -71,12 +68,15 @@ public class GuessingGame
 				System.out.println("It's higher.");
 			else if (guess > guessNum)
 				System.out.println("It's lower.");
+			//increments the number of guesses
 			guessCount ++;
 		}
 		if (guessCount > 1)
 			System.out.println("You got it right in "+ guessCount + " guesses");
+		//special case
 		else
 			System.out.println("You got it right in 1 guess");
+		//returns the number of guesses
 		return guessCount;
 	}
 	
